@@ -41,3 +41,47 @@ test('it has a h1 title', () => {
         let h1 = document.querySelector('h1');
         expect(h1.textContent).toContain('Our Testing Practice');
     })
+```
+* These tests can all live within describe blocks that sit within the describe block above that runs the beforeEach to define the DOM
+
+### Testing your functions
+
+- Make sure you have an `module.exports` in the file where your function lives like so in index.js;
+
+```
+module.exports = {
+    functionName
+}
+```
+
+- If you have any eventListeners make sure they are wrapped in a `document.addEventListener('DOMContentLoaded', function () {}` otherwise they will not render in your tests. Example here;
+
+```
+document.addEventListener('DOMContentLoaded', function () {
+    let buttonOne = document.getElementById('buttonOne');
+    buttonOne.addEventListener('click', functionName)
+})
+```
+
+- In your test file create a variable that requires this function from where it lives. Like so;
+
+```
+const javaFunctions = require('../js/index.js')
+```
+
+- Now you should be able to write tests on the functions that you've required. E.g. ;
+
+```
+describe('simple function', () => {
+    test('simple function works', () => {
+        javaFunctions.functionName()
+        let h1 = document.querySelector('h1')
+            expect(h1.textContent).toContain('Thanks for pressing the button')
+        })
+    })
+})
+```
+### This all should work! Have fun testing in the browser!
+
+
+
