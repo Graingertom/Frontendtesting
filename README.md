@@ -2,6 +2,10 @@
 
 ## Set up
 
+### Cloning the repo
+
+- Please clone from the Clone branch if you would like a blank slate. From there you can follow the instructions below to get some basic tests to pass.
+
 ### What have I installed?
 
 - `npm init -y`
