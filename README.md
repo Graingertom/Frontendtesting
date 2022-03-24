@@ -2,6 +2,10 @@
 
 ## Set up
 
+### Cloning the repo
+
+- 
+
 ### What have I installed?
 
 - `npm init -y`
