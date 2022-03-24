@@ -2,10 +2,6 @@
 
 ## Set up
 
-### Cloning the repo
-
-- Please clone from the Clone branch if you would like a blank slate. From there you can follow the instructions below to get some basic tests to pass.
-
 ### What have I installed?
 
 - `npm init -y`
@@ -14,7 +10,7 @@
 
 ### How to set up test file
 
-* We want to be using the jsdom environment and not the node environment and so to fix this add this block to the very top of your test file:
+* We want to be using the jsdom environment and not the node environment and so to fix this, add this block to the very top of your test file:
 
 ```
 /**
@@ -22,7 +18,7 @@
  */
 ```
 
-* Adding this line of code to the top of your test file, where the html variable points to your .html file you want to test
+* Adding this line of code to the top of your test file, where the html variable points to the .html file you want to test
 
 ```
 const fs = require('fs');
@@ -50,7 +46,7 @@ test('it has a h1 title', () => {
 
 ### Testing your functions
 
-- Make sure you have an `module.exports` in the file where your function lives like so in index.js;
+- Make sure you have a `module.exports` in the file where your function lives like so in index.js;
 
 ```
 module.exports = {
@@ -58,7 +54,7 @@ module.exports = {
 }
 ```
 
-- If you have any eventListeners make sure they are wrapped in a `document.addEventListener('DOMContentLoaded', function () {}` otherwise they will not render in your tests. Example here;
+- If you have any EventListeners make sure they are wrapped in a `document.addEventListener('DOMContentLoaded', function () {}` otherwise they will not render in your tests. Example here;
 
 ```
 document.addEventListener('DOMContentLoaded', function () {
@@ -85,6 +81,9 @@ describe('simple function', () => {
     })
 })
 ```
+
+* These tests can all live within describe blocks that sit within the describe block above that runs the beforeEach to define the DOM
+
 ### This all should work! Have fun testing in the browser!
 
 
