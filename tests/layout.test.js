@@ -6,12 +6,16 @@ const fs = require('fs');
 const path = require('path');
 const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
 
+// adding jest-fetch-mock
+global.fetch = require('jest-fetch-mock');
+
 // require your functions
 const javaFunctions = require('../js/index')
 
 describe('index.html', () => {
     beforeEach(() => {
         document.documentElement.innerHTML = html.toString();
+        { fetch.resetMocks() }
     })
 
     describe('layout testing', () => {
@@ -35,6 +39,13 @@ describe('index.html', () => {
             const testArr = ['this', 'that', 'the other'];
             javaFunctions.arrFunc(testArr, fakeCb);
             expect(fakeCb).toHaveBeenCalledTimes(3);
+        })
+    })
+
+    describe('testing an api call', () => {
+        test('it makes a call to the api', async () => {
+            await javaFunctions.callApi()
+            expect(fetch).toHaveBeenCalled()
         })
     })
 

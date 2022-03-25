@@ -12,7 +12,19 @@ function arrFunc (arr, cb) {
     arr.forEach(cb);
 }
 
+async function callApi () {
+    try {
+        const response = await fetch(`http://localhost:3000/data`)
+        const data = await response.json()
+        console.log(data)    
+        return data
+    } catch (err) {
+        console.warn(err)
+    }
+}
+
 module.exports = {
     functionName,
-    arrFunc
+    arrFunc,
+    callApi
 }
