@@ -114,7 +114,7 @@ describe('arrayFunc', () => {
     test('it runs the callback once for every element in the array', () => {
         const fakeCb = jest.fn(); 
         const testArr = ['this', 'that', 'the other'];
-        arrayFunc(testArr, fakeCb);
+        <your-imported-variable>.arrayFunc(testArr, fakeCb);
         expect(fakeCb).toHaveBeenCalledTimes(3);
     })
 })
