@@ -48,7 +48,7 @@ test('it has a h1 title', () => {
 ```
 * These tests can all live within describe blocks that sit within the describe block above that runs the beforeEach to define the DOM
 
-### Testing your functions
+## Testing your functions
 
 - Make sure you have a `module.exports` in the file where your function lives like so in index.js;
 
@@ -87,6 +87,44 @@ describe('simple function', () => {
 ```
 
 * These tests can all live within describe blocks that sit within the describe block above that runs the beforeEach to define the DOM
+
+## Running mock functions in jest
+
+### Set Up
+
+- for mocking functions you just need jest, for mocking api calls you need `npm install --save-dev jest-fetch-mock` but that will be outlined further down the README.
+- As previous make sure any functions you are testing have been exported out of their home and required into the test file.
+
+### Testing your function
+
+- Let's use a function that uses an array and a call back to demonstrate.
+- Try a function like 
+
+```
+function arrayFunc(arr, cb){
+    arr.forEach(cb)
+}
+
+```
+- One thing that would be useful to test would be that the function is called for each element in the array.
+- So let's test this using jest mock like so;
+
+```
+describe('arrayFunc', () => {
+    test('it runs the callback once for every element in the array', () => {
+        const fakeCb = jest.fn(); 
+        const testArr = ['this', 'that', 'the other'];
+        arrayFunc(testArr, fakeCb);
+        expect(fakeCb).toHaveBeenCalledTimes(3);
+    })
+})
+
+```
+
+- The above uses `jest.fn()` to create the mock function for the callback.
+- We then create a fake array to test against and name the variable appropriately.
+- You can then add these arguments into your function and have it run on the test array and use the fake callback.
+- We are just testing to see if the function is being called for each element in the array so the fake callback doesn't need to do anything, it just needs to be called.
 
 ### This all should work! Have fun testing in the browser!
 
