@@ -8,6 +8,11 @@ function functionName () {
     h1.textContent = "Thanks for pressing the button"
 }
 
+function arrFunc (arr, cb) {
+    arr.forEach(cb);
+}
+
 module.exports = {
-    functionName
+    functionName,
+    arrFunc
 }
