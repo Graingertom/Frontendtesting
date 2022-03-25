@@ -126,6 +126,33 @@ describe('arrayFunc', () => {
 - You can then add these arguments into your function and have it run on the test array and use the fake callback.
 - We are just testing to see if the function is being called for each element in the array so the fake callback doesn't need to do anything, it just needs to be called.
 
+## Running mock api calls in jest
+
+### Set up
+
+- Firstly, ensure you have install jest-fetch-mock by running `npm install --save-dev jest-fetch-mock` there is also a `fetch-mock-jest` so don't mix them up!
+- Then in your test file make sure you have this line of code;
+
+```
+global.fetch = require('jest-fetch-mock');
+```
+
+- Also, you want to make sure your start point is the same for each test so place a `beforeEach` to clear out the mocks like this;
+
+```
+beforeEach(() => { fetch.resetMocks() })
+```
+
+- This can be placed just under the describe line similar to the html import from the beginning.
+
+### Running your tests
+
+- A good starting point would be to test if the api is being called. Again, a reminder that every function you test needs to be exported and then imported into your test file. So an example of my function making the api call would be;
+
+```
+
+```
+
 ### This all should work! Have fun testing in the browser!
 
 
